@@ -1,10 +1,61 @@
-﻿namespace Module_6._OOP._Introduction
+﻿
+
+namespace Module_6._OOP._Introduction
+
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Human human = new Human();
+            human.Greetings();
+
+            human.name = "Дмитрий";
+            human.age = 23;
+            human.Greetings();
+
+
+            Console.ReadKey();
         }
     }
+    class Human
+    {
+        // Поля класса
+        public string name;
+        public int age;
+
+        // Метод класса
+        public void Greetings()
+        {
+            Console.WriteLine("Меня зовут {0}, мне {1}", name, age);
+        }
+    }
+
+    struct Animal
+    {
+        // Поля структуры
+        public string type;
+        public string name;
+        public int age;
+
+        // Метод структуры
+        public void Info()
+        {
+            Console.WriteLine("Это {0} по кличке {1}, ему {2}", type, name, age);
+        }
+    }
+    class Test
+    {
+        // Поля класса
+        public string name;
+        public int age;
+
+        // Метод класса
+        public void Greetings()
+        {
+            Console.WriteLine("Меня зовут {0}, мне {1}", name, age);
+        }
+    }
+
+
 }
