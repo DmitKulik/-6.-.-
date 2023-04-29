@@ -1,6 +1,7 @@
 ﻿
 
 using System.Drawing;
+using System.Xml.Linq;
 
 namespace Module_6._OOP._Introduction
 
@@ -8,35 +9,39 @@ namespace Module_6._OOP._Introduction
     class Program
     {
         static void Main(string[] args)
+        //Задание 6.3.1
         {
-            //Animal animal = new Animal { type = "Собака", name = "Вольт", age = 4 };
+            var department = GetCurrentDepartment();
 
+            string Type = "Банк";
+            string Name = "Санкт-Петербург";
+
+            if (department?.Company?.Type == "Банк" && department?.City?.Name == "Санкт-Петербург")
+            {
+                Console.WriteLine("У банка {0} есть отделение в Санкт-Петербурге", department?.Company?.Name ?? "Неизвестная компания");
+            }
         }
-        //Задание 6.2.8
-        class Rectangle
+        static Department GetCurrentDepartment()
         {
-            public int a;
-            public int b;
-
-            public Rectangle()
-            {
-                int a = 6;
-                int b = 4;
-            }
-
-            public Rectangle(int side) // a == b c одним параметром
-            {
-                a = side;
-                b = side;
-            }
-
-            Rectangle(int first, int second) //с 2 параметрами, когда a != b  
-            {
-                a = first;
-                b = second;
-            }
-            public int Square(out int c) => c = a * b; // метод посчета суммы
+            // logic
         }
+        class Company
+        {
+            public string Type;
+            public string Name;
+        }
+
+        class Department
+        {
+            public Company Company;
+            public City City;
+        }
+
+        class City
+        {
+            public string Name;
+        }
+
 
     }
 
