@@ -1,5 +1,7 @@
 ﻿
 
+using System.Drawing;
+
 namespace Module_6._OOP._Introduction
 
 {
@@ -7,55 +9,28 @@ namespace Module_6._OOP._Introduction
     {
         static void Main(string[] args)
         {
-            Human human = new Human();
-            human.Greetings();
+            Animal animal = new Animal { type = "Собака", name = "Вольт", age = 4 };
 
-            human.name = "Дмитрий";
-            human.age = 23;
-            human.Greetings();
-
-
-            Console.ReadKey();
         }
-    }
-    class Human
-    {
-        // Поля класса
-        public string name;
-        public int age;
-
-        // Метод класса
-        public void Greetings()
+        //Задание 6.2.2
+        class Pen
         {
-            Console.WriteLine("Меня зовут {0}, мне {1}", name, age);
+            public string color;
+            public int cost;
         }
-    }
-
-    struct Animal
-    {
-        // Поля структуры
-        public string type;
-        public string name;
-        public int age;
-
-        // Метод структуры
-        public void Info()
+        public Pen()
         {
-            Console.WriteLine("Это {0} по кличке {1}, ему {2}", type, name, age);
+            string color = "черный";
+            int cost = 100;
         }
-    }
-    class Test
-    {
-        // Поля класса
-        public string name;
-        public int age;
-
-        // Метод класса
-        public void Greetings()
+        public Pen(string penColor, int penCost)
         {
-            Console.WriteLine("Меня зовут {0}, мне {1}", name, age);
+            color = penColor;
+            cost = penCost;
         }
+
     }
+
 
 
 }
