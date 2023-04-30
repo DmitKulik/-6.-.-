@@ -9,42 +9,77 @@ namespace Module_6._OOP._Introduction
     class Program
     {
         static void Main(string[] args)
-        //Задание 6.3.1
+        { 
+        }
+
+
+        enum TurnDirection //Добавили перечисление TurnDirection
+                           //для обозначения направления поворота для указателя
+                           //поворота машины (поворотник не включен, право, лево)
         {
-            var department = GetCurrentDepartment();
+            None = 0,
+            Left,
+            Right
+        }
 
-            string Type = "Банк";
-            string Name = "Санкт-Петербург";
+        class Car
+        {
+            private double Fuel;
 
-            if (department?.Company?.Type == "Банк" && department?.City?.Name == "Санкт-Петербург")
+            private int Mileage;
+
+            private string color; //добавлен цвет, используя приватное поле color
+
+            private TurnDirection turn; //Добавили закрытое поле для хранения этой информации
+
+            public Car()
             {
-                Console.WriteLine("У банка {0} есть отделение в Санкт-Петербурге", department?.Company?.Name ?? "Неизвестная компания");
+                Fuel = 50;
+                Mileage = 0;
+                color = "White";
+            }
+
+            private void Move()
+            {
+                // Move a kilometer
+                Mileage++;
+                Fuel -= 0.5;
+            }
+
+            private void Turn(TurnDirection direction) //Закрытый метод для изменения его значения, чтобы водитель мог включать и выключать поворотники 
+            {
+                turn = direction;
+            }
+
+            public void FillTheCar()
+            {
+                Fuel = 50;
+            }
+
+            public string GetColor() // метод для получения цвета
+            {
+                return color;
+            }
+
+            public void ChangeColor(string newColor) // метод для изминения цвета
+            {
+                if (color != newColor)
+                    color = newColor;
+            }
+
+            public bool IsTurningLeft() //Для внешнего же мира мы должны получать информацию о том, поворачивает ли машина влево — метод IsTurningLeft.
+            {
+                return turn == TurnDirection.Left;
+            }
+
+            public bool IsTurningRight() ////Для внешнего же мира мы должны получать информацию о том, поворачивает ли машина вправо метод IsTurningRight
+            {
+                return turn == TurnDirection.Right;
             }
         }
-        static Department GetCurrentDepartment()
-        {
-            // logic
-        }
-        class Company
-        {
-            public string Type;
-            public string Name;
-        }
-
-        class Department
-        {
-            public Company Company;
-            public City City;
-        }
-
-        class City
-        {
-            public string Name;
-        }
-
 
     }
-
-
-
 }
+
+
+
