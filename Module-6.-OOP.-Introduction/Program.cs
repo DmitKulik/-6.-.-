@@ -1,5 +1,6 @@
 ﻿
 
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Globalization;
 using System.Xml.Linq;
@@ -10,57 +11,56 @@ namespace Module_6._OOP._Introduction
     class Program
     {
         static void Main(string[] args)
+        //Задание 7.1.7  Впишите пропущенный код для параметров в Console.WriteLine вместо ??? так,
+        //чтобы в консоли выводилось
         {
-        }
-        //Задание 7.1.4
-        class Employee
-        {
-            public string Name;
-            public int Age;
-            public int Salary;
-        }
+            SmartHelper helper = new SmartHelper("Олег");
+            helper.Greetings("Грег");
 
-        class ProjectManager : Employee
-        {
-            public string NameProjectName;
-            
+            Console.ReadKey();
         }
+       
+        class SmartHelper
+        {
+            private string name;
 
-        class Developer : Employee
-        {
-            public string ProgrammingLanguage;
+            public SmartHelper(string name)
+            {
+                this.name = name;
+            }
 
+            public void Greetings(string name)
+            {
+                Console.WriteLine("Привет, {0}, я интеллектуальный помощник {1}", name, this.name);
+            }
         }
-        //Задание 7.1.5
-        class Apple
+        class BaseClass
         {
-            
-        }
-        class Banana : Apple
-        {
-            
-        }
-        class Pear : Banana
-        {
+            protected string Name;
 
-        }
-        class Potato : Pear
-        {
-
-        }
-        class Carrot : Potato
-        {
-
+            public BaseClass(string name)
+            {
+                Name = name;
+            }
         }
 
+        class DerivedClass : BaseClass
+        {
+            public string Description;
 
+            public int Counter;
+        }
 
+        public DerivedClass(string name, string description) : base(name)
+        {
+            Description = description;
+        }
 
-
-
-
-
-
+        public DerivedClass(string name, string description, int counter) : base(name)
+        {
+            Description = description;
+            Counter = counter;
+        }
     }
 }
 
