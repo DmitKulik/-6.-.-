@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Metrics;
+﻿using System.ComponentModel.Design;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
@@ -13,76 +14,21 @@ namespace Module_6._OOP._Introduction
             
         }
 
-        //Задание 7.2.3
-        class BaseClass {
-            public virtual void Display() {
-                Console.WriteLine("Метод класса BaseClass");
-            }
+        //Задание 7.2.4
+        class BaseClass
+        {
+            public virtual int Counter { get; set; }
         }
+
         class DerivedClass : BaseClass {
-            public override void Display() {
-                Console.WriteLine("Метод класса DerivedClass");
-            }
-        }
-
-
-
-
-        class Citizen
-        {
-            public virtual double Age{ get; set; }
-
-            public void SayYourAge()
+            private int counter;
+            public override int Counter
             {
-                Console.WriteLine("Мне {0} лет", Age);
+                get { return counter; }
+                set { if (value < 0) { Console.WriteLine("X");} else { counter = 9; } }
             }
         }
 
-        class CivilServant : Citizen
-        {
-            private double age;
-            public override double Age
-            {
-                get
-                {
-                    return age;
-                }
-                set
-                {
-                    if (value < 18)
-                    {
-                        Console.WriteLine("Для работы госслужащим гражданин должен быть не младше 18 лет");
-                    }
-                    else
-                    {
-                        age = value;
-                    }
-                }
-            }
-        }
-
-        class President : CivilServant
-        {
-            private double age;
-            public override double Age
-            {
-                get
-                {
-                    return age;
-                }
-                set
-                {
-                    if (value < 35)
-                    {
-                        Console.WriteLine("Для работы президентом гражданин должен быть не младше 35 лет");
-                    }
-                    else
-                    {
-                        age = value;
-                    }
-                }
-            }
-        }
     }
 }
 
