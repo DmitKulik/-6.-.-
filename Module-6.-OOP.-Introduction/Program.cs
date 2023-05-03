@@ -1,8 +1,7 @@
-﻿
-
-using System.Diagnostics.Metrics;
+﻿using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Globalization;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 
 namespace Module_6._OOP._Introduction
@@ -10,56 +9,79 @@ namespace Module_6._OOP._Introduction
 {
     class Program
     {
-        static void Main(string[] args)
-        //Задание 7.1.7  Впишите пропущенный код для параметров в Console.WriteLine вместо ??? так,
-        //чтобы в консоли выводилось
-        {
-            SmartHelper helper = new SmartHelper("Олег");
-            helper.Greetings("Грег");
-
-            Console.ReadKey();
+        static void Main(string[] args) {
+            
         }
-       
-        class SmartHelper
-        {
-            private string name;
 
-            public SmartHelper(string name)
-            {
-                this.name = name;
-            }
-
-            public void Greetings(string name)
-            {
-                Console.WriteLine("Привет, {0}, я интеллектуальный помощник {1}", name, this.name);
+        //Задание 7.2.3
+        class BaseClass {
+            public virtual void Display() {
+                Console.WriteLine("Метод класса BaseClass");
             }
         }
-        class BaseClass
-        {
-            protected string Name;
-
-            public BaseClass(string name)
-            {
-                Name = name;
+        class DerivedClass : BaseClass {
+            public override void Display() {
+                Console.WriteLine("Метод класса DerivedClass");
             }
         }
 
-        class DerivedClass : BaseClass
-        {
-            public string Description;
 
-            public int Counter;
+
+
+        class Citizen
+        {
+            public virtual double Age{ get; set; }
+
+            public void SayYourAge()
+            {
+                Console.WriteLine("Мне {0} лет", Age);
+            }
         }
 
-        public DerivedClass(string name, string description) : base(name)
+        class CivilServant : Citizen
         {
-            Description = description;
+            private double age;
+            public override double Age
+            {
+                get
+                {
+                    return age;
+                }
+                set
+                {
+                    if (value < 18)
+                    {
+                        Console.WriteLine("Для работы госслужащим гражданин должен быть не младше 18 лет");
+                    }
+                    else
+                    {
+                        age = value;
+                    }
+                }
+            }
         }
 
-        public DerivedClass(string name, string description, int counter) : base(name)
+        class President : CivilServant
         {
-            Description = description;
-            Counter = counter;
+            private double age;
+            public override double Age
+            {
+                get
+                {
+                    return age;
+                }
+                set
+                {
+                    if (value < 35)
+                    {
+                        Console.WriteLine("Для работы президентом гражданин должен быть не младше 35 лет");
+                    }
+                    else
+                    {
+                        age = value;
+                    }
+                }
+            }
         }
     }
 }
