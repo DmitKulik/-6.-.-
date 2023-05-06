@@ -1,9 +1,4 @@
-﻿using System.ComponentModel.Design;
-using System.Diagnostics.Metrics;
-using System.Drawing;
-using System.Globalization;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml.Linq;
+﻿
 
 namespace Module_6._OOP._Introduction
 
@@ -11,25 +6,30 @@ namespace Module_6._OOP._Introduction
     class Program
     {
         static void Main(string[] args) {
-            
+            DerivedClass Deri = new DerivedClass();
+            Deri.Display();
         }
 
-        //Задание 7.2.4
+        //Задание 7.2.3
         class BaseClass
         {
-            public virtual int Counter { get; set; }
-        }
-
-        class DerivedClass : BaseClass {
-            private int counter;
-            public override int Counter
+            
+            public virtual void Display()
             {
-                get { return counter; }
-                set { if (value < 0) { Console.WriteLine("X");} else { counter = 9; } }
+                Console.WriteLine("Метод класса BaseClass");
             }
         }
+        
+        class DerivedClass : BaseClass
+            {
+                public override void Display()
+                {
+                    base.Display(); // + отработает метод основного класса
+                    Console.WriteLine("Метод класса DerivedClass");
+                }
+            }
 
-    }
+        }
 }
 
 
