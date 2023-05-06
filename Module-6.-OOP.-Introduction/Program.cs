@@ -1,35 +1,49 @@
 ﻿
 
+using System.Diagnostics.Metrics;
+
 namespace Module_6._OOP._Introduction
 
 {
     class Program
     {
-        static void Main(string[] args) {
+        static void Main(string[] args)
+        {
             DerivedClass Deri = new DerivedClass();
-            Deri.Display();
+            
         }
 
-        //Задание 7.2.3
+        //Задание 7.2.4
+
         class BaseClass
         {
-            
-            public virtual void Display()
+            public virtual int Counter
             {
-                Console.WriteLine("Метод класса BaseClass");
+                get;
+                set;
             }
         }
-        
+
         class DerivedClass : BaseClass
+        {
+            public int counter;
+            public override int Counter
             {
-                public override void Display()
+                get
                 {
-                    base.Display(); // + отработает метод основного класса
-                    Console.WriteLine("Метод класса DerivedClass");
+                    return counter;
+                }
+                set
+                {
+                    if (counter > 0)
+                    {
+
+                        counter = value;
+                    }
                 }
             }
-
         }
+    }
 }
 
 
