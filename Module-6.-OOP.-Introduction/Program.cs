@@ -9,63 +9,86 @@ namespace Module_6._OOP._Introduction
     {
         static void Main(string[] args)
         {
-            A a = new A();
-            ((A)a).Display();
+            var array = new Book[] {
+            new Book { Name = "Мастер и Маргарита", Author = "М.А. Булгаков" },
+            new Book { Name = "Отцы и дети", Author = "И.С. Тургенев" },
+        };
+            BookCollection collection = new BookCollection(array);
 
-            B b = new B();
-            ((B)b).Display();
+            Console.ReadKey();
 
-            C c = new C();
-            ((C)a).Display();
+            Book book = collection[1];
+            book = collection[-1];
+            book = collection[4];
 
-            D d = new D();
-            ((D)b).Display();
+            Console.ReadKey();
 
-            E e = new E();
-            ((E)c).Display();
-            
+            book = collection["Мастер и Маргарита"];
+
+            Console.ReadKey();
+
 
         }
-
-        //Задание 7.2.7
-
-        class A
+        class Book
         {
-            public virtual void Display()
-            {
-                Console.WriteLine("Вызван метод класса A");
+            public string Name;
+            public string Author;
+        }
 
+        class BookCollection
+        {
+            private Book[] collection;
+
+            public BookCollection(Book[] collection)
+            {
+                this.collection = collection;
             }
 
-        }
-        class B : A
-        {
-            public new void Display()
+            // Индексатор по массиву
+            public Book this[int index]
             {
-                Console.WriteLine("Вызван метод класса B");
+                get
+                {
+                    // Проверяем, чтобы индекс был в диапазоне для массива
+                    if (index >= 0 && index < collection.Length)
+                    {
+                        return collection[index];
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+
+                private set
+                {
+                    // Проверяем, чтобы индекс был в диапазоне для массива
+                    if (index >= 0 && index < collection.Length)
+                    {
+                        collection[index] = value;
+                    }
+                }
+            }
+
+            public Book this[string name]
+            {
+                get
+                {
+                    for (int i = 0; i < collection.Length; i++)
+                    {
+                        if (collection[i].Name == name)
+                        {
+                            return collection[i];
+                        }
+                    }
+
+                    return null;
+                }
             }
         }
-        class C : A
-        {
-            public override void Display()
-            {
-                Console.WriteLine("Вызван метод класса C");
-            }
-        }
-        class D : B
-        {
-            public new void Display()
-            {
-                Console.WriteLine("Вызван метод класса D");
-            }
-        }
-        class E : C
-        {
-            public new void Display()
-            {
-                Console.WriteLine("Вызван метод класса E");
-            }
-        }
+
+
+
     }
 }
 
