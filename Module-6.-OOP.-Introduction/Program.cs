@@ -10,19 +10,24 @@ namespace Module_6._OOP._Introduction
         static void Main(string[] args)
         {
             A a = new A();
-            a.Display();
+            ((A)a).Display();
+
             B b = new B();
-            b.Display();
+            ((B)b).Display();
+
             C c = new C();
-            a.Display();
+            ((C)a).Display();
+
             D d = new D();
-            b.Display();
+            ((D)b).Display();
+
             E e = new E();
-            c.Display();
+            ((E)c).Display();
+            
 
         }
 
-        //Задание 7.2.7 uuuu
+        //Задание 7.2.7
 
         class A
         {
