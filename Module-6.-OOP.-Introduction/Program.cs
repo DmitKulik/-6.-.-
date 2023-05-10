@@ -10,33 +10,26 @@ namespace Module_6._OOP._Introduction
         static void Main(string[] args)
         {
             
-           
+        }
+
+        // Задание 7.6.2 оздайте класс-обобщение Car для автомобиля.
+        // Универсальным параметром будет тип двигателя в автомобиле (электрический и бензиновый).
+        // Для типов двигателей также создайте классы — ElectricEngine и GasEngine.
+        // В классе Car создайте поле Engine в качестве типа которому укажите универсальный параметр.
+
+        class Car<T>
+        {
+
+            public T Engine;
 
         }
-        // Задание 7.3.3
-        abstract class ComputerPart
+        class ElectricEngine
         {
-            public abstract void Work();
+
         }
-        class Processor : ComputerPart
+        class GasEngine
         {
-            public override void Work() {
-                
-            }
-        }
-        class MotherBoard : ComputerPart
-        {
-            public override void Work()
-            {
-                
-            }
-        }
-        class GraphicCard : ComputerPart
-        {
-            public override void Work()
-            {
-                
-            }
+
         }
     }
 }
