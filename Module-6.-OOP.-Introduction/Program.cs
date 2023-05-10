@@ -12,25 +12,34 @@ namespace Module_6._OOP._Introduction
             
         }
 
-        // Задание 7.6.2 оздайте класс-обобщение Car для автомобиля.
-        // Универсальным параметром будет тип двигателя в автомобиле (электрический и бензиновый).
-        // Для типов двигателей также создайте классы — ElectricEngine и GasEngine.
-        // В классе Car создайте поле Engine в качестве типа которому укажите универсальный параметр.
+        // Задание 7.6.6
 
-        class Car<T>
+
+        class ElectricEngine : Engine { }
+
+        class GasEngine : Engine { }
+
+        class CarPart { }
+
+        class Engine { }
+
+        class Battery : CarPart { }
+
+        class Differential : CarPart { }
+
+        class Wheel : CarPart { }
+
+        class Car<T1> where T1 : Engine //ограничение от класса
         {
+            public T1 Engine;
 
-            public T Engine;
+            public virtual void ChangePart<T2>(T2 newPart) where T2 : CarPart //ограничение от класса
+            {
 
+            }
         }
-        class ElectricEngine
-        {
 
-        }
-        class GasEngine
-        {
 
-        }
     }
 }
 
